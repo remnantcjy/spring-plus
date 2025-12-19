@@ -13,13 +13,21 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class Timestamped {
 
-    @CreatedDate
+//    @CreatedDate
     @Column(updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime createdAt;
 
-    @LastModifiedDate
+//    @LastModifiedDate
     @Column
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime modifiedAt;
+
+    public void setCreatedAtForTest(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setModifiedAtForTest(LocalDateTime modifiedAt) {
+        this.modifiedAt = modifiedAt;
+    }
 }
