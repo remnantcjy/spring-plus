@@ -23,13 +23,13 @@ public interface TodoRepository extends JpaRepository<Todo, Long> {
 
     @Query("SELECT t FROM  Todo  t " +
             "where (:weather IS NULL or t.weather = :weather) " +
-            "and (:startDateTime IS NULL or t.modifiedAt >= :startDateTime) " +
+            "and (:startDateTime IS NULL or t.createdAt >= :startDateTime) " +
             "and (:endDateTime IS NULL or t.modifiedAt <= :endDateTime) " +
             "order by t.modifiedAt desc "
     )
     Page<Todo> findAllBySearch(Pageable pageable,
-                               @Param("weather")String weather,
-                               @Param("startDateTime")LocalDateTime startDateTime,
-                               @Param("endDateTime")LocalDateTime endDateTime
+                               @Param("weather") String weather,
+                               @Param("startDateTime") LocalDateTime startDateTime,
+                               @Param("endDateTime") LocalDateTime endDateTime
     );
 }
